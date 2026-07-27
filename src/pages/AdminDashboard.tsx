@@ -48,7 +48,7 @@ function UserP2PWalletsTab({ adminId }: { adminId: string }) {
         .select('*, profiles!user_p2p_wallets_user_id_fkey(full_name, email)')
         .order('created_at', { ascending: false })
         .limit(100),
-      supabase.from('profiles').select('*').eq('kyc_status', 'approved').limit(100),
+      supabase.from('profiles').select('*').eq('is_kyc_verified', true).limit(100),
     ]);
     setWallets(Array.isArray(walletsRes.data) ? walletsRes.data : []);
     setUsers(Array.isArray(usersRes.data) ? usersRes.data : []);
@@ -435,7 +435,7 @@ function ExternalWalletsTab({ adminId }: { adminId: string }) {
   );
 }
 
-/* ── Merchant Deposits amp; Transfers Tab ───────────────────────── */
+/* ── Merchant Deposits &amp; Transfers Tab ───────────────────────── */
 function MerchantDepositsTab({ adminId }: { adminId: string }) {
   const [deposits, setDeposits] = useState<MerchantDeposit[]>([]);
   const [wallets, setWallets] = useState<any[]>([]);
