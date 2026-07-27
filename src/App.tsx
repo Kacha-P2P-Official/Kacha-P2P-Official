@@ -8,25 +8,12 @@ import { Header } from '@/components/layout/Header';
 import { MobileBottomNav } from '@/components/layout/MobileBottomNav';
 import { FloatingChatbot } from '@/components/common/FloatingChatbot';
 import { PWAInstallPrompt } from '@/components/common/PWAInstallPrompt';
-import { useAuth } from '@/contexts/AuthContext';
-import { usePresenceHeartbeat } from '@/hooks/usePresenceHeartbeat';
 import { routes } from './routes';
-import './lib/i18n';
 
-const PresenceTracker: React.FC = () => {
-  const { user } = useAuth();
-  usePresenceHeartbeat(user?.id);
-  return null;
-};
-
-if (typeof window !== 'undefined') {
-  const storedTheme = localStorage.getItem('theme');
-  if (storedTheme === 'light') {
-    document.documentElement.classList.remove('dark');
-  } else {
-    document.documentElement.classList.add('dark');
-    if (!storedTheme) localStorage.setItem('theme', 'dark');
-  }
+// Default to light mode on first visit
+if (typeof window !== 'undefined' && !localStorage.getItem('theme')) {
+  document.documentElement.classList.remove('dark');
+  localStorage.setItem('theme', 'light');
 }
 
 const App: React.FC = () => {
@@ -34,7 +21,6 @@ const App: React.FC = () => {
     <Router>
       <AuthProvider>
         <RouteGuard>
-          <PresenceTracker />
           <IntersectObserver />
           <div className="flex flex-col min-h-screen">
             <Header />
