@@ -30,12 +30,14 @@ self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
+  // Let POST, PUT, DELETE requests pass through directly (for form submissions, API calls)
   if (
     request.method !== 'GET' ||
     url.hostname.includes('supabase.co') ||
     url.hostname.includes('googleapis') ||
     url.protocol === 'chrome-extension:'
   ) {
+    event.respondWith(fetch(request));
     return;
   }
 
