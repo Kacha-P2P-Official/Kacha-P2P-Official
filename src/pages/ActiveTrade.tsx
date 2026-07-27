@@ -41,6 +41,7 @@ export default function ActiveTrade() {
 
   const [trade, setTrade] = useState<Trade | null>(null);
   const [counterparty, setCounterparty] = useState<Profile | null>(null);
+  const [offer, setOffer] = useState<any>(null);
   const [messages, setMessages] = useState<TradeMessage[]>([]);
   const [loading, setLoading] = useState(true);
   const [msg, setMsg] = useState('');
@@ -63,6 +64,12 @@ export default function ActiveTrade() {
       supabase.from('profiles').select('*').eq('id', cpId).maybeSingle().then(({ data: cp }) => {
         setCounterparty(cp);
       });
+      // load offer to get payment details
+      if (data.offer_id) {
+        supabase.from('offers').select('*').eq('id', data.offer_id).maybeSingle().then(({ data: offerData }) => {
+          setOffer(offerData);
+        });
+      }
     });
     // load messages
     const messagesPromise = supabase.from('trade_messages')
@@ -330,6 +337,28 @@ export default function ActiveTrade() {
                 <p className="text-sm text-muted-foreground font-sans">
                   Please deposit {trade.amount_etb} ETB to the seller's bank account and upload a screenshot of the payment confirmation.
                 </p>
+                
+                {/* Seller's Payment Details */}
+                {offer?.payment_details && Object.keys(offer.payment_details).length > 0 && (
+                  <div className="mt-4 p-3 bg-muted/30 rounded-lg border border-border">
+                    <p className="text-xs font-semibold font-sans mb-2 text-accent">Seller's Payment Details:</p>
+                    {Object.entries(offer.payment_details).map(([method, details]: [string, any]) => (
+                      <div key={method} className="mb-2 last:mb-0">
+                        <p className="text-xs font-semibold font-sans">{method}</p>
+                        {details?.account_number && (
+                          <p className="text-xs text-muted-foreground font-sans">
+                            Account: <span className="font-mono bg-background px-1.5 py-0.5 rounded">{details.account_number}</span>
+                          </p>
+                        )}
+                        {details?.holder_name && (
+                          <p className="text-xs text-muted-foreground font-sans">
+                            Account Holder: <span className="font-medium">{details.holder_name}</span>
+                          </p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
                 
                 {trade.payment_proof_url ? (
                   <div className="relative">
