@@ -135,8 +135,8 @@ function UserP2PWalletsTab({ adminId }: { adminId: string }) {
       <div className="space-y-4">
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <h3 className="text-base font-heading font-semibold">User P2P Wallets</h3>
-          <Button size="sm" onClick={() => setAddDialogOpen(true)} className="bg-primary text-primary-foreground hover:bg-primary/90 border-0 shadow-[0_0_15px_rgba(16,185,129,0.35)]">
-            <Plus className="mr-1.5 h-3.5 w-3.5" /> Add Wallet
+          <Button size="sm" onClick={() => setAddDialogOpen(true)} className="bg-primary text-primary-foreground hover:bg-primary/90 border-0 shadow-[0_0_15px_rgba(16,185,129,0.35)] h-8 text-xs">
+            <Plus className="mr-1.5 h-3 w-3" /> Add Wallet
           </Button>
         </div>
 
@@ -240,7 +240,7 @@ function UserP2PWalletsTab({ adminId }: { adminId: string }) {
                 value={network}
                 onChange={(e) => setNetwork(e.target.value)}
                 placeholder="e.g., Tron, Ethereum, BSC"
-                className=" font-sans bg-background/50 border-primary/30"
+                className=" font-sans bg-background/50 border-primary/30 h-9"
               />
             </div>
             <div className="space-y-1">
@@ -249,7 +249,7 @@ function UserP2PWalletsTab({ adminId }: { adminId: string }) {
                 value={walletAddress}
                 onChange={(e) => setWalletAddress(e.target.value)}
                 placeholder="Enter wallet address"
-                className="font-sans bg-background/50 border-primary/30"
+                className="font-sans bg-background/50 border-primary/30 h-9"
               />
             </div>
             <div className="space-y-1">
@@ -258,16 +258,16 @@ function UserP2PWalletsTab({ adminId }: { adminId: string }) {
                 value={label}
                 onChange={(e) => setLabel(e.target.value)}
                 placeholder="e.g., Main Trading Wallet"
-                className="font-sans bg-background/50 border-primary/30"
+                className="font-sans bg-background/50 border-primary/30 h-9"
               />
             </div>
           </div>
           <DialogFooter className="gap-2 border-t border-border mt-6 pt-4">
-            <Button variant="outline" onClick={() => setAddDialogOpen(false)} className="font-sans border-primary/30 text-primary hover:bg-primary/10">Cancel</Button>
+            <Button variant="outline" onClick={() => setAddDialogOpen(false)} className="font-sans border-primary/30 text-primary hover:bg-primary/10 h-8 text-xs">Cancel</Button>
             <Button
               onClick={handleAddWallet}
               disabled={processing || !selectedUser || !walletAddress || !network}
-              className="bg-primary text-primary-foreground hover:bg-primary/90 font-sans shadow-[0_0_15px_rgba(16,185,129,0.3)] border-0"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 font-sans shadow-[0_0_15px_rgba(16,185,129,0.3)] border-0 h-8 text-xs"
             >
               {processing ? 'Adding...' : 'Add Wallet'}
             </Button>
@@ -353,8 +353,8 @@ function ExternalWalletsTab({ adminId }: { adminId: string }) {
     <>
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-xl font-heading font-semibold">External Wallets (Bybit, Binance, etc.)</h2>
-        <Button size="sm" onClick={() => setAddDialogOpen(true)} className="font-sans bg-primary text-primary-foreground hover:bg-primary/90">
-          <Plus className="mr-2 h-4 w-4" /> Add Wallet
+        <Button size="sm" onClick={() => setAddDialogOpen(true)} className="font-sans bg-primary text-primary-foreground hover:bg-primary/90 h-8 text-xs">
+          <Plus className="mr-2 h-3 w-3" /> Add Wallet
         </Button>
       </div>
 
