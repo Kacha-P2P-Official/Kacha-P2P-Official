@@ -138,11 +138,11 @@ export default function Login() {
           <Button
             type="button"
             variant="outline"
-            className="w-full font-sans h-11 border-border hover:border-accent/50 hover:bg-muted/50 gap-3 transition-all"
+            className="w-full font-sans h-9 border-border hover:border-accent/50 hover:bg-muted/50 gap-3 transition-all text-xs"
             onClick={handleGoogleSignIn}
             disabled={googleLoading}
           >
-            {googleLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <GoogleIcon />}
+            {googleLoading ? <Loader2 className="h-3 w-3 animate-spin" /> : <GoogleIcon />}
             <span>Continue with Google</span>
           </Button>
 
@@ -169,7 +169,7 @@ export default function Login() {
                 <FormItem>
                   <FormLabel className="text-xs uppercase tracking-wider font-sans">Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="you@example.com" {...field} className="font-sans h-11" />
+                    <Input placeholder="you@example.com" {...field} className="font-sans h-9" />
                   </FormControl>
                   <FormMessage className="font-sans text-xs" />
                 </FormItem>
@@ -178,14 +178,14 @@ export default function Login() {
                 <FormItem>
                   <FormLabel className="text-xs uppercase tracking-wider font-sans">Password</FormLabel>
                   <FormControl>
-                    <Input type="password" placeholder="••••••••" {...field} className="font-sans h-11" />
+                    <Input type="password" placeholder="••••••••" {...field} className="font-sans h-9" />
                   </FormControl>
                   <FormMessage className="font-sans text-xs" />
                 </FormItem>
               )} />
-              <Button type="submit" className="w-full h-11" disabled={loading}>
+              <Button type="submit" className="w-full h-9 text-xs" disabled={loading}>
                 {loading
-                  ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Signing in…</>
+                  ? <><Loader2 className="mr-2 h-3 w-3 animate-spin" /> Signing in…</>
                   : 'Sign in'
                 }
               </Button>

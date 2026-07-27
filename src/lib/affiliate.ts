@@ -151,14 +151,23 @@ export class AffiliateService {
     // Update referral code stats
     const referral = await this.getReferralById(referralId);
     if (referral) {
-      await supabase
+      // Get current stats first
+      const { data: currentCode } = await supabase
         .from('referral_codes')
-        .update({
-          total_referrals: supabase.raw('total_referrals + 1'),
-          active_referrals: supabase.raw('active_referrals + 1'),
-          total_earnings: supabase.raw(`total_earnings + ${settings.bonus_per_referral}`),
-        })
-        .eq('user_id', referral.referrer_id);
+        .select('*')
+        .eq('user_id', referral.referrer_id)
+        .single();
+      
+      if (currentCode) {
+        await supabase
+          .from('referral_codes')
+          .update({
+            total_referrals: (currentCode.total_referrals || 0) + 1,
+            active_referrals: (currentCode.active_referrals || 0) + 1,
+            total_earnings: (currentCode.total_earnings || 0) + settings.bonus_per_referral,
+          })
+          .eq('user_id', referral.referrer_id);
+      }
     }
 
     return true;

@@ -12,7 +12,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
-import { UserCircle, ShieldCheck, TrendingUp, Loader2 } from 'lucide-react';
+import { UserCircle, ShieldCheck, TrendingUp, Loader2, Wallet } from 'lucide-react';
 import { toast } from 'sonner';
 
 const schema = z.object({
@@ -58,10 +58,10 @@ export default function Profile() {
   };
 
   const stats = [
-    { label: 'Completed Trades', value: tradeCount !== null ? String(tradeCount) : null, icon: TrendingUp },
-    { label: 'Completion Rate', value: profile ? `${profile.completion_rate}%` : null, icon: TrendingUp },
-    { label: 'USDT Balance', value: profile ? `${profile.balance_usdt.toFixed(2)} USDT` : null, icon: TrendingUp },
-    { label: 'ETB Balance', value: profile ? `${profile.balance_etb.toFixed(2)} ETB` : null, icon: TrendingUp },
+    { label: 'Completed Trades', value: tradeCount !== null ? String(tradeCount) : null, icon: TrendingUp, gradient: 'from-green-500/20 to-transparent' },
+    { label: 'Completion Rate', value: profile ? `${profile.completion_rate}%` : null, icon: TrendingUp, gradient: 'from-blue-500/20 to-transparent' },
+    { label: 'USDT Balance', value: profile ? `${profile.balance_usdt.toFixed(2)} USDT` : null, icon: Wallet, gradient: 'from-accent/20 to-transparent' },
+    { label: 'ETB Balance', value: profile ? `${profile.balance_etb.toFixed(2)} ETB` : null, icon: Wallet, gradient: 'from-purple-500/20 to-transparent' },
   ];
 
   return (
@@ -113,14 +113,20 @@ export default function Profile() {
 
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {stats.map(({ label, value }) => (
-          <Card key={label} className="border border-border">
-            <CardContent className="pt-4 pb-4">
-              <p className="text-xs uppercase tracking-wider text-muted-foreground font-sans">{label}</p>
+        {stats.map(({ label, value, icon: Icon, gradient }) => (
+          <Card key={label} className="border border-border relative overflow-hidden group hover:border-border/80 transition-colors">
+            <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-50 group-hover:opacity-100 transition-opacity`} />
+            <CardContent className="pt-6 pb-4 relative z-10">
+              <div className="flex items-center justify-between mb-2">
+                <p className="text-xs uppercase tracking-wider text-muted-foreground font-sans">{label}</p>
+                <div className="h-8 w-8 rounded-lg bg-background/50 backdrop-blur-sm border border-border/50 flex items-center justify-center">
+                  <Icon className="h-4 w-4 text-foreground/70" />
+                </div>
+              </div>
               {profileLoading || value === null ? (
-                <Skeleton className="h-6 w-20 mt-1.5" />
+                <Skeleton className="h-6 w-20" />
               ) : (
-                <p className="text-lg font-heading font-bold mt-1">{value}</p>
+                <p className="text-xl font-heading font-bold">{value}</p>
               )}
             </CardContent>
           </Card>
@@ -129,7 +135,7 @@ export default function Profile() {
 
       {/* Edit form */}
       <Card className="border border-border">
-        <CardHeader>
+        <CardHeader className="pb-3">
           <CardTitle className="text-base font-heading">Edit Profile</CardTitle>
         </CardHeader>
         <CardContent>
@@ -146,7 +152,7 @@ export default function Profile() {
                   <FormItem>
                     <FormLabel className="text-xs uppercase tracking-wider font-sans">Full Name</FormLabel>
                     <FormControl>
-                      <Input {...field} className="font-sans" />
+                      <Input {...field} className="font-sans h-9" />
                     </FormControl>
                     <FormMessage className="font-sans text-xs" />
                   </FormItem>
@@ -155,13 +161,13 @@ export default function Profile() {
                   <FormItem>
                     <FormLabel className="text-xs uppercase tracking-wider font-sans">Phone (optional)</FormLabel>
                     <FormControl>
-                      <Input placeholder="+251 9XX XXX XXXX" {...field} className="font-sans" />
+                      <Input placeholder="+251 9XX XXX XXXX" {...field} className="font-sans h-9" />
                     </FormControl>
                     <FormMessage className="font-sans text-xs" />
                   </FormItem>
                 )} />
-                <Button type="submit" disabled={loading}>
-                  {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : 'Save Changes'}
+                <Button type="submit" disabled={loading} size="sm" className="h-8 text-xs">
+                  {loading ? <Loader2 className="mr-2 h-3 w-3 animate-spin" /> : 'Save Changes'}
                 </Button>
               </form>
             </Form>

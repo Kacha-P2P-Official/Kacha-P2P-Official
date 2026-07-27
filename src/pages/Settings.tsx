@@ -202,14 +202,14 @@ export default function Settings() {
                   <FormItem>
                     <FormLabel className="text-xs uppercase tracking-wider font-sans">{label}</FormLabel>
                     <FormControl>
-                      <Input type="password" placeholder="••••••••" {...field} className="font-sans" />
+                      <Input type="password" placeholder="••••••••" {...field} className="font-sans h-9" />
                     </FormControl>
                     <FormMessage className="font-sans text-xs" />
                   </FormItem>
                 )} />
               ))}
-              <Button type="submit" size="sm" disabled={pwLoading}>
-                {pwLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : 'Update Password'}
+              <Button type="submit" size="sm" disabled={pwLoading} className="h-8 text-xs">
+                {pwLoading ? <Loader2 className="mr-2 h-3 w-3 animate-spin" /> : 'Update Password'}
               </Button>
             </form>
           </Form>
@@ -230,10 +230,10 @@ export default function Settings() {
             <Button
               variant="outline"
               size="sm"
-              className="border-destructive/40 text-destructive hover:bg-destructive/10 shrink-0"
+              className="border-destructive/40 text-destructive hover:bg-destructive/10 shrink-0 h-8 text-xs"
               onClick={handleSignOut}
             >
-              <LogOut className="mr-2 h-4 w-4" />
+              <LogOut className="mr-2 h-3 w-3" />
               Sign out
             </Button>
           </div>
@@ -248,8 +248,8 @@ export default function Settings() {
               if (!open) { setDeleteConfirmText(''); setDeleteError(null); }
             }}>
               <AlertDialogTrigger asChild>
-                <Button variant="outline" size="sm" className="border-destructive/40 text-destructive hover:bg-destructive/10 shrink-0">
-                  <Trash2 className="mr-2 h-4 w-4" />
+                <Button variant="outline" size="sm" className="border-destructive/40 text-destructive hover:bg-destructive/10 shrink-0 h-8 text-xs">
+                  <Trash2 className="mr-2 h-3 w-3" />
                   Delete Account
                 </Button>
               </AlertDialogTrigger>
@@ -270,7 +270,7 @@ export default function Settings() {
                     placeholder="delete my account"
                     value={deleteConfirmText}
                     onChange={(e) => setDeleteConfirmText(e.target.value)}
-                    className="font-sans"
+                    className="font-sans h-9"
                     disabled={deleteLoading}
                   />
                   {deleteError && (
@@ -287,10 +287,10 @@ export default function Settings() {
                     variant="destructive"
                     disabled={deleteConfirmText !== 'delete my account' || deleteLoading}
                     onClick={handleDeleteAccount}
-                    className="font-sans"
+                    className="font-sans h-8 text-xs"
                   >
                     {deleteLoading
-                      ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Deleting…</>
+                      ? <><Loader2 className="mr-2 h-3 w-3 animate-spin" />Deleting…</>
                       : 'Yes, delete permanently'}
                   </Button>
                 </AlertDialogFooter>

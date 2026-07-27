@@ -144,7 +144,7 @@ export default function CreateOffer() {
               <FormLabel className="text-xs uppercase tracking-wider font-sans">Offer Type</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
-                  <SelectTrigger className="font-sans">
+                  <SelectTrigger className="font-sans h-9">
                     <SelectValue />
                   </SelectTrigger>
                 </FormControl>
@@ -162,7 +162,7 @@ export default function CreateOffer() {
             <FormItem>
               <FormLabel className="text-xs uppercase tracking-wider font-sans">Amount (USDT)</FormLabel>
               <FormControl>
-                <Input type="number" step="0.01" placeholder="100" {...field} className="font-sans" />
+                <Input type="number" step="0.01" placeholder="100" {...field} className="font-sans h-9" />
               </FormControl>
               <FormMessage className="font-sans text-xs" />
             </FormItem>
@@ -173,7 +173,7 @@ export default function CreateOffer() {
             <FormItem>
               <FormLabel className="text-xs uppercase tracking-wider font-sans">Exchange Rate (ETB/USDT)</FormLabel>
               <FormControl>
-                <Input type="number" step="0.01" placeholder={offerType === 'buy' ? '181' : '184'} {...field} className="font-sans" />
+                <Input type="number" step="0.01" placeholder={offerType === 'buy' ? '181' : '184'} {...field} className="font-sans h-9" />
               </FormControl>
               <FormDescription className="font-sans text-xs">
                 {offerType === 'buy' ? 'Allowed: 180–182 ETB/USDT' : 'Allowed: 183–186 ETB/USDT'}
@@ -188,7 +188,7 @@ export default function CreateOffer() {
               <FormItem>
                 <FormLabel className="text-xs uppercase tracking-wider font-sans">Min Limit (ETB)</FormLabel>
                 <FormControl>
-                  <Input type="number" placeholder="500" {...field} className="font-sans" />
+                  <Input type="number" placeholder="500" {...field} className="font-sans h-9" />
                 </FormControl>
                 <FormMessage className="font-sans text-xs" />
               </FormItem>
@@ -197,7 +197,7 @@ export default function CreateOffer() {
               <FormItem>
                 <FormLabel className="text-xs uppercase tracking-wider font-sans">Max Limit (ETB)</FormLabel>
                 <FormControl>
-                  <Input type="number" placeholder="10000" {...field} className="font-sans" />
+                  <Input type="number" placeholder="10000" {...field} className="font-sans h-9" />
                 </FormControl>
                 <FormMessage className="font-sans text-xs" />
               </FormItem>
@@ -246,7 +246,7 @@ export default function CreateOffer() {
                       <Input
                         placeholder="Enter account number"
                         {...field}
-                        className="font-sans"
+                        className="font-sans h-9"
                       />
                     </FormControl>
                     <FormMessage className="font-sans text-xs" />
@@ -263,7 +263,7 @@ export default function CreateOffer() {
                       <Input
                         placeholder="Enter account holder name"
                         {...field}
-                        className="font-sans"
+                        className="font-sans h-9"
                       />
                     </FormControl>
                     <FormMessage className="font-sans text-xs" />
@@ -281,7 +281,7 @@ export default function CreateOffer() {
                 <Textarea
                   placeholder="Any specific instructions for your trading partner…"
                   className="resize-none font-sans"
-                  rows={3}
+                  rows={2}
                   {...field}
                 />
               </FormControl>
@@ -289,8 +289,8 @@ export default function CreateOffer() {
             </FormItem>
           )} />
 
-          <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : 'Post Offer'}
+          <Button type="submit" className="w-full h-9 text-xs" disabled={loading}>
+            {loading ? <Loader2 className="mr-2 h-3 w-3 animate-spin" /> : 'Post Offer'}
           </Button>
         </form>
       </Form>

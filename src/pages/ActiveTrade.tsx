@@ -423,24 +423,24 @@ export default function ActiveTrade() {
       {trade.status !== 'completed' && trade.status !== 'cancelled' && trade.status !== 'disputed' && (
         <div className="flex flex-wrap gap-2">
           {isBuyer && trade.status === 'initiated' && (
-            <Button size="sm" onClick={() => updateTradeStatus('payment_pending')}>
+            <Button size="sm" onClick={() => updateTradeStatus('payment_pending')} className="h-8 text-xs">
               I've Sent Payment
             </Button>
           )}
           {!isBuyer && trade.status === 'payment_pending' && (
-            <Button size="sm" onClick={() => updateTradeStatus('payment_confirmed')}>
+            <Button size="sm" onClick={() => updateTradeStatus('payment_confirmed')} className="h-8 text-xs">
               Confirm Payment Received
             </Button>
           )}
           {!isBuyer && trade.status === 'payment_confirmed' && (
-            <Button size="sm" onClick={() => updateTradeStatus('completed')}>
+            <Button size="sm" onClick={() => updateTradeStatus('completed')} className="h-8 text-xs">
               Release USDT
             </Button>
           )}
           {isBuyer && trade.status === 'initiated' && (
             <AlertDialog>
               <AlertDialogTrigger asChild>
-                <Button size="sm" variant="outline">
+                <Button size="sm" variant="outline" className="h-8 text-xs">
                   Cancel Trade
                 </Button>
               </AlertDialogTrigger>
@@ -465,8 +465,8 @@ export default function ActiveTrade() {
           )}
           <AlertDialog onOpenChange={(open) => { if (!open) setDisputeReason(''); }}>
             <AlertDialogTrigger asChild>
-              <Button size="sm" variant="outline" className="text-destructive border-destructive/30 hover:bg-destructive/10">
-                <AlertTriangle className="mr-2 h-3.5 w-3.5" /> Dispute
+              <Button size="sm" variant="outline" className="text-destructive border-destructive/30 hover:bg-destructive/10 h-8 text-xs">
+                <AlertTriangle className="mr-2 h-3 w-3" /> Dispute
               </Button>
             </AlertDialogTrigger>
             <AlertDialogContent className="max-w-[calc(100%-2rem)] md:max-w-lg">
@@ -481,7 +481,7 @@ export default function ActiveTrade() {
                 placeholder="e.g. Seller hasn't released USDT after payment confirmation"
                 value={disputeReason}
                 onChange={(e) => setDisputeReason(e.target.value)}
-                className="font-sans"
+                className="font-sans h-9"
               />
               <AlertDialogFooter>
                 <AlertDialogCancel className="font-sans">Cancel</AlertDialogCancel>
@@ -544,11 +544,11 @@ export default function ActiveTrade() {
               value={msg}
               onChange={(e) => setMsg(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } }}
-              className="font-sans bg-background focus-visible:ring-accent"
+              className="font-sans bg-background focus-visible:ring-accent h-9"
               disabled={trade.status === 'completed' || trade.status === 'cancelled'}
             />
-            <Button size="icon" onClick={sendMessage} disabled={sending || !msg.trim()} className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-sm">
-              <Send className="h-4 w-4" />
+            <Button size="icon" onClick={sendMessage} disabled={sending || !msg.trim()} className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-sm h-9 w-9">
+              <Send className="h-3.5 w-3.5" />
               <span className="sr-only">Send</span>
             </Button>
           </div>

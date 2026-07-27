@@ -80,7 +80,7 @@ function LiveRatesWidget() {
             </span>
           </div>
         </div>
-        <Button className="w-full text-xs shadow-sm shadow-accent/10 h-8" size="sm" asChild>
+        <Button className="w-full text-xs shadow-sm shadow-accent/10 h-9 bg-accent text-accent-foreground hover:bg-accent/90 border-0" size="sm" asChild>
           <Link to={`/marketplace/create?type=${activeTab}`}>
             Create {activeTab === 'buy' ? 'Buy' : 'Sell'} Offer
           </Link>
@@ -176,9 +176,9 @@ export default function Marketplace() {
               Browse verified offers from traders across Ethiopia.
             </p>
           </div>
-          <Button asChild size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90 border-0 shadow-lg shadow-accent/20 h-9 text-xs">
+          <Button asChild size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90 border-0 shadow-lg shadow-accent/20 h-8 text-xs">
             <Link to="/marketplace/create">
-              <Plus className="mr-1.5 h-3.5 w-3.5" /> Create Offer
+              <Plus className="mr-1.5 h-3 w-3" /> Create Offer
             </Link>
           </Button>
         </div>
