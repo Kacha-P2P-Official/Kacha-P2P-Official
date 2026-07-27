@@ -97,12 +97,18 @@
 @layer base {
   * { @apply border-border; }
 
-  html { -webkit-tap-highlight-color: transparent; }
+  html { 
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
 
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: var(--leading-body, 1.6);
+    overflow-x: hidden;
+    max-width: 100vw;
   }
 
   h1, h2, h3, h4, h5, h6 {

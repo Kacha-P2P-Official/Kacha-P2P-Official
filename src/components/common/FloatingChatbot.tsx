@@ -66,7 +66,7 @@ export function FloatingChatbot() {
 
   return (
     /* Positioned above mobile bottom nav — bottom-20 on mobile, bottom-4 on md+ */
-    <div className="fixed bottom-20 md:bottom-4 right-4 z-50 flex flex-col items-end gap-3">
+    <div className="fixed bottom-20 md:bottom-4 right-4 z-50 flex flex-col items-end gap-3 pb-safe pr-safe">
       {/* Chat panel */}
       {open && (
         <div className="w-[calc(100vw-2rem)] max-w-sm flex flex-col rounded-2xl border border-border shadow-[var(--shadow-md)] bg-card overflow-hidden accent-glow">

@@ -7,6 +7,10 @@ if (!root) {
   console.error("Root element not found");
   document.body.innerHTML = "<div style='color: white; padding: 20px;'>Error: Root element not found</div>";
 } else {
+  // Apply overflow constraints to root element
+  root.style.overflowX = 'hidden';
+  root.style.maxWidth = '100vw';
+  
   try {
     createRoot(root).render(<App />);
   } catch (error) {
