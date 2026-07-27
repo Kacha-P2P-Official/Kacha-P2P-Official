@@ -80,7 +80,7 @@ function LiveRatesWidget() {
             </span>
           </div>
         </div>
-        <Button className="w-full text-[9px] shadow-sm shadow-accent/10 h-7 bg-accent text-accent-foreground hover:bg-accent/90 border-0" size="sm" asChild>
+        <Button className="w-full text-[8px] shadow-sm shadow-accent/10 h-6 bg-accent text-accent-foreground hover:bg-accent/90 border-0" size="sm" asChild>
           <Link to={`/marketplace/create?type=${activeTab}`}>
             Create {activeTab === 'buy' ? 'Buy' : 'Sell'} Offer
           </Link>
