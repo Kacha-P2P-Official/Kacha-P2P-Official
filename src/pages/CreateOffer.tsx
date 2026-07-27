@@ -84,10 +84,7 @@ export default function CreateOffer() {
       setError('KYC verification required before creating offers.');
       return;
     }
-    if (values.type === 'sell' && !profile.is_merchant) {
-      setError('Merchant status required to create sell offers. Please apply for merchant status first.');
-      return;
-    }
+    // Removed merchant requirement check - allow any KYC verified user to create offers
     setLoading(true);
     setError(null);
     
@@ -122,16 +119,6 @@ export default function CreateOffer() {
       {error && (
         <Alert variant="destructive">
           <AlertDescription className="font-sans text-sm">{error}</AlertDescription>
-        </Alert>
-      )}
-
-      {offerType === 'sell' && !profile?.is_merchant && (
-        <Alert>
-          <AlertDescription className="font-sans text-sm">
-            <Building2 className="h-4 w-4 inline mr-2" />
-            Merchant status required to create sell offers. 
-            <Link to="/merchant-application" className="underline font-medium ml-1">Apply for merchant status</Link>
-          </AlertDescription>
         </Alert>
       )}
 
