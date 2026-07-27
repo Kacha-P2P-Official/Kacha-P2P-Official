@@ -5,11 +5,6 @@
 
 /* Kacha — trusted P2P exchange: deep charcoal base, emerald trust green, amber verified accent */
 
-@font-face {
-  font-family: 'Inter';
-  src: url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-}
-
 @layer base {
   :root {
     --radius: 12px;
