@@ -10,6 +10,7 @@ import MerchantApplication from '@/pages/MerchantApplication';
 import Profile from '@/pages/Profile';
 import AdminDashboard from '@/pages/AdminDashboard';
 import Settings from '@/pages/Settings';
+import UserWallets from '@/pages/UserWallets';
 import TermsOfService from '@/pages/TermsOfService';
 import PrivacyPolicy from '@/pages/PrivacyPolicy';
 import type { ReactNode } from 'react';
@@ -34,6 +35,7 @@ export const routes: RouteConfig[] = [
   { name: 'Merchant Application', path: '/merchant-application', element: <MerchantApplication /> },
   { name: 'Profile', path: '/profile', element: <Profile /> },
   { name: 'Settings', path: '/settings', element: <Settings /> },
+  { name: 'User Wallets', path: '/wallets', element: <UserWallets /> },
   { name: 'Admin Dashboard', path: '/admin', element: <AdminDashboard /> },
   { name: 'Terms of Service', path: '/terms', element: <TermsOfService />, public: true },
   { name: 'Privacy Policy', path: '/privacy', element: <PrivacyPolicy />, public: true },

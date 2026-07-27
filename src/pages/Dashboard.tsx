@@ -143,6 +143,13 @@ export default function Dashboard() {
               </span>
             </Link>
           </Button>
+          <Button variant="outline" asChild className="h-14 border-border bg-card hover:bg-muted/50 group relative overflow-hidden">
+            <Link to="/wallets">
+              <span className="relative z-10 flex items-center font-sans text-base">
+                <Wallet className="mr-2 h-4 w-4" /> Manage Wallets
+              </span>
+            </Link>
+          </Button>
         </div>
       </div>
 

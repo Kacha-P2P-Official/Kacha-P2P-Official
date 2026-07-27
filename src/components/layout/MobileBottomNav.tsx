@@ -1,11 +1,11 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
-import { LayoutDashboard, Store, User, MoreHorizontal, ShieldCheck } from 'lucide-react';
+import { LayoutDashboard, Store, User, MoreHorizontal, ShieldCheck, Wallet } from 'lucide-react';
 
 const NAV_ITEMS = [
   { label: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
   { label: 'Market', path: '/marketplace', icon: Store },
-  { label: 'Profile', path: '/profile', icon: User },
+  { label: 'Wallets', path: '/wallets', icon: Wallet },
   { label: 'More', path: '/settings', icon: MoreHorizontal },
 ];
 

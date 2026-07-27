@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -132,6 +133,22 @@ export default function Profile() {
           </Card>
         ))}
       </div>
+
+      {/* Quick Actions */}
+      <Card className="border border-border">
+        <CardHeader className="pb-3">
+          <CardTitle className="text-base font-heading">Quick Actions</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 gap-3">
+            <Button asChild variant="outline" className="h-9 text-xs">
+              <Link to="/wallets">
+                <Wallet className="mr-2 h-3 w-3" /> Manage Wallets
+              </Link>
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Edit form */}
       <Card className="border border-border">
