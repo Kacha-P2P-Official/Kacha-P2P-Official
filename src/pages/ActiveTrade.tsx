@@ -339,10 +339,10 @@ export default function ActiveTrade() {
                 </p>
                 
                 {/* Seller's Payment Details */}
-                {offer?.payment_details && Object.keys(offer.payment_details).length > 0 && (
-                  <div className="mt-4 p-3 bg-muted/30 rounded-lg border border-border">
-                    <p className="text-xs font-semibold font-sans mb-2 text-accent">Seller's Payment Details:</p>
-                    {Object.entries(offer.payment_details).map(([method, details]: [string, any]) => (
+                <div className="mt-4 p-3 bg-muted/30 rounded-lg border border-border">
+                  <p className="text-xs font-semibold font-sans mb-2 text-accent">Seller's Payment Details:</p>
+                  {offer?.payment_details && Object.keys(offer.payment_details).length > 0 ? (
+                    Object.entries(offer.payment_details).map(([method, details]: [string, any]) => (
                       <div key={method} className="mb-2 last:mb-0">
                         <p className="text-xs font-semibold font-sans">{method}</p>
                         {details?.account_number && (
@@ -356,9 +356,13 @@ export default function ActiveTrade() {
                           </p>
                         )}
                       </div>
-                    ))}
-                  </div>
-                )}
+                    ))
+                  ) : (
+                    <p className="text-xs text-muted-foreground font-sans">
+                      No payment details available from the seller's offer.
+                    </p>
+                  )}
+                </div>
                 
                 {trade.payment_proof_url ? (
                   <div className="relative">
