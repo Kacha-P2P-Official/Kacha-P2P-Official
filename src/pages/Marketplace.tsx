@@ -137,6 +137,17 @@ export default function Marketplace() {
       return;
     }
     const isBuyer = offer.type === 'sell'; // I'm buying USDT from a sell offer
+    
+    // Check if buyer has sufficient balance
+    if (isBuyer) {
+      const requiredBalance = offer.amount_usdt;
+      const currentBalance = profile.balance_usdt || 0;
+      if (currentBalance < requiredBalance) {
+        toast.error(`Insufficient balance. You need ${requiredBalance} USDT but have ${currentBalance} USDT. Please deposit to a merchant account first.`);
+        return;
+      }
+    }
+    
     const { data, error } = await supabase.from('trades').insert({
       offer_id: offer.id,
       buyer_id: isBuyer ? profile.id : offer.user_id,
