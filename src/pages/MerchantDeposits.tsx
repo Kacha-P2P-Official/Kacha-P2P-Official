@@ -202,7 +202,7 @@ export default function MerchantDeposits() {
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
                 placeholder="100.00"
-                className="font-sans"
+                className="font-sans h-9"
               />
             </div>
             <div className="space-y-1">
@@ -211,7 +211,7 @@ export default function MerchantDeposits() {
                 value={txHash}
                 onChange={(e) => setTxHash(e.target.value)}
                 placeholder="Enter transaction hash from blockchain"
-                className="font-sans"
+                className="font-sans h-9"
               />
             </div>
             <div className="space-y-1">
@@ -253,7 +253,7 @@ export default function MerchantDeposits() {
             <Button
               onClick={handleSubmitDeposit}
               disabled={submitting || upload.loading || upload.errors.length > 0}
-              className="w-full"
+              className="w-full h-9 text-xs"
             >
               {submitting ? 'Submitting...' : 'Submit Deposit'}
             </Button>

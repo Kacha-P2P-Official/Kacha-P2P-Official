@@ -91,7 +91,7 @@ export default function MerchantApplication() {
             <FormItem>
               <FormLabel className="text-xs uppercase tracking-wider font-sans">Business Name</FormLabel>
               <FormControl>
-                <Input placeholder="Your business name" {...field} className="font-sans" />
+                <Input placeholder="Your business name" {...field} className="font-sans h-9" />
               </FormControl>
               <FormMessage className="font-sans text-xs" />
             </FormItem>
@@ -104,7 +104,7 @@ export default function MerchantApplication() {
                 <Textarea
                   placeholder="Describe your business and trading experience..."
                   className="resize-none font-sans"
-                  rows={3}
+                  rows={2}
                   {...field}
                 />
               </FormControl>
@@ -116,7 +116,7 @@ export default function MerchantApplication() {
             <FormItem>
               <FormLabel className="text-xs uppercase tracking-wider font-sans">Expected Monthly Trading Volume (USDT)</FormLabel>
               <FormControl>
-                <Input type="number" step="0.01" placeholder="1000" {...field} className="font-sans" />
+                <Input type="number" step="0.01" placeholder="1000" {...field} className="font-sans h-9" />
               </FormControl>
               <FormDescription className="font-sans text-xs">
                 Estimated amount of USDT you plan to trade monthly
@@ -152,8 +152,8 @@ export default function MerchantApplication() {
             </FormItem>
           )} />
 
-          <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : 'Submit Application'}
+          <Button type="submit" className="w-full h-9 text-xs" disabled={loading}>
+            {loading ? <Loader2 className="mr-2 h-3 w-3 animate-spin" /> : 'Submit Application'}
           </Button>
         </form>
       </Form>
