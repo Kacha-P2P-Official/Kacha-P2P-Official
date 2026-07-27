@@ -19,4 +19,13 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      onwarn(warning, warn) {
+        // Ignore certain warnings
+        if (warning.code === 'MODULE_BARE_IMPORT') return;
+        warn(warning);
+      },
+    },
+  },
 });
