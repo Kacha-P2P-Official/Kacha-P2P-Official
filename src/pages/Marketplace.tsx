@@ -160,9 +160,9 @@ export default function Marketplace() {
   };
 
   const tabClass = (t: 'buy' | 'sell') =>
-    `px-4 py-1.5 text-xs font-sans font-medium transition-all no-select cursor-pointer rounded-md shrink-0 ${
-      tab === t ? 'bg-foreground text-background shadow-md' : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
-    }`;
+    `px-4 py-1.5 text-xs font-sans font-medium transition-all no-select cursor-pointer rounded-md shrink-0 relative ${
+      tab === t ? 'text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+    } ${tab === t ? 'after:content-[\"\"] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-8 after:h-0.5 after:bg-accent after:rounded-full' : ''}`;
 
   return (
     <div className="container mx-auto px-3 py-6 max-w-6xl w-full overflow-hidden">
@@ -197,7 +197,7 @@ export default function Marketplace() {
           <ActiveMerchants />
 
           {/* Tabs */}
-          <div className="flex gap-2 p-1 bg-muted/40 rounded-lg w-full max-w-full overflow-x-auto">
+          <div className="flex gap-2 p-1 bg-muted/40 rounded-lg w-full max-w-full overflow-x-auto relative">
             <button className={tabClass('buy')} onClick={() => setSearchParams({ tab: 'buy' })}>
               Buy USDT
             </button>
