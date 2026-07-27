@@ -4,13 +4,16 @@ import App from "./App.tsx";
 import { AppWrapper } from "./components/common/PageMeta.tsx";
 import "./index.css";
 
-Sentry.init({
-  dsn: import.meta.env['VITE_SENTRY_DSN'] as string | undefined,
-  environment: import.meta.env.MODE,
-});
+// Only initialize Sentry if DSN is provided
+if (import.meta.env['VITE_SENTRY_DSN']) {
+  Sentry.init({
+    dsn: import.meta.env['VITE_SENTRY_DSN'] as string,
+    environment: import.meta.env.MODE,
+  });
+}
 
 createRoot(document.getElementById("root")!).render(
-  <Sentry.ErrorBoundary fallback={<p>应用发生错误，请刷新页面重试</p>}>
+  <Sentry.ErrorBoundary fallback={<div style={{padding: '20px', color: 'white'}}>Error loading app. Please refresh.</div>}>
     <AppWrapper>
       <App />
     </AppWrapper>
