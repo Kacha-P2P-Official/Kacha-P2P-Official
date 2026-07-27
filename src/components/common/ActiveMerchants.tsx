@@ -47,16 +47,16 @@ export function ActiveMerchants() {
   if (!loading && merchants.length === 0) return null;
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 w-full overflow-hidden">
       <div className="flex items-center justify-between">
         <h2 className="text-xs font-heading font-bold uppercase tracking-wider text-muted-foreground">
           Active Merchants
         </h2>
       </div>
-      <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar snap-x">
+      <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar snap-x w-full max-w-full">
         {loading ? (
           [...Array(4)].map((_, i) => (
-            <Card key={i} className="border border-border shrink-0 w-48">
+            <Card key={i} className="border border-border shrink-0 w-44">
               <CardContent className="p-2 space-y-1.5">
                 <div className="flex items-center gap-1.5">
                   <Skeleton className="h-6 w-6 rounded-full" />
@@ -70,7 +70,7 @@ export function ActiveMerchants() {
           merchants.map((m) => (
             <Card
               key={m.id}
-              className="border border-border shrink-0 w-48 snap-start hover:border-primary/40 hover:shadow-[var(--shadow-md)] transition-all"
+              className="border border-border shrink-0 w-44 snap-start hover:border-primary/40 hover:shadow-[var(--shadow-md)] transition-all"
             >
               <CardContent className="p-2 space-y-1.5">
                 <div className="flex items-center gap-2">

@@ -160,12 +160,12 @@ export default function Marketplace() {
   };
 
   const tabClass = (t: 'buy' | 'sell') =>
-    `px-4 py-1.5 text-xs font-sans font-medium transition-all no-select cursor-pointer rounded-md ${
+    `px-4 py-1.5 text-xs font-sans font-medium transition-all no-select cursor-pointer rounded-md shrink-0 ${
       tab === t ? 'bg-foreground text-background shadow-md' : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
     }`;
 
   return (
-    <div className="container mx-auto px-3 py-6 max-w-6xl">
+    <div className="container mx-auto px-3 py-6 max-w-6xl w-full overflow-hidden">
       {/* Header */}
       <div className="mb-6">
         <div className="luminate-rule" />
@@ -197,7 +197,7 @@ export default function Marketplace() {
           <ActiveMerchants />
 
           {/* Tabs */}
-          <div className="flex gap-2 p-1 bg-muted/40 rounded-lg w-fit">
+          <div className="flex gap-2 p-1 bg-muted/40 rounded-lg w-full max-w-full overflow-x-auto">
             <button className={tabClass('buy')} onClick={() => setSearchParams({ tab: 'buy' })}>
               Buy USDT
             </button>
