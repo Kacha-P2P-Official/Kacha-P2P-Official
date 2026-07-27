@@ -104,7 +104,11 @@ export default function CreateOffer() {
       terms_conditions: values.terms_conditions || null,
     });
     setLoading(false);
-    if (err) { setError(err.message); return; }
+    if (err) { 
+      console.error('Offer creation error:', err);
+      setError(err.message); 
+      return; 
+    }
     toast.success('Offer created successfully');
     navigate('/marketplace');
   };
