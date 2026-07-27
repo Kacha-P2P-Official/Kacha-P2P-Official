@@ -47,22 +47,22 @@ export function ActiveMerchants() {
   if (!loading && merchants.length === 0) return null;
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <h2 className="text-sm font-heading font-bold uppercase tracking-wider text-muted-foreground">
+        <h2 className="text-xs font-heading font-bold uppercase tracking-wider text-muted-foreground">
           Active Merchants
         </h2>
       </div>
-      <div className="flex gap-3 overflow-x-auto pb-2 no-scrollbar snap-x">
+      <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar snap-x">
         {loading ? (
           [...Array(4)].map((_, i) => (
-            <Card key={i} className="border border-border shrink-0 w-56">
-              <CardContent className="p-4 space-y-2">
-                <div className="flex items-center gap-2">
-                  <Skeleton className="h-9 w-9 rounded-full" />
-                  <Skeleton className="h-4 w-24" />
+            <Card key={i} className="border border-border shrink-0 w-48">
+              <CardContent className="p-2 space-y-1.5">
+                <div className="flex items-center gap-1.5">
+                  <Skeleton className="h-6 w-6 rounded-full" />
+                  <Skeleton className="h-3 w-20" />
                 </div>
-                <Skeleton className="h-3 w-32" />
+                <Skeleton className="h-2 w-24" />
               </CardContent>
             </Card>
           ))
@@ -70,16 +70,16 @@ export function ActiveMerchants() {
           merchants.map((m) => (
             <Card
               key={m.id}
-              className="border border-border shrink-0 w-56 snap-start hover:border-primary/40 hover:shadow-[var(--shadow-md)] transition-all"
+              className="border border-border shrink-0 w-48 snap-start hover:border-primary/40 hover:shadow-[var(--shadow-md)] transition-all"
             >
-              <CardContent className="p-4 space-y-2.5">
-                <div className="flex items-center gap-2.5">
+              <CardContent className="p-2 space-y-1.5">
+                <div className="flex items-center gap-2">
                   <div className="relative shrink-0">
-                    <div className="h-9 w-9 rounded-full bg-muted flex items-center justify-center border border-border overflow-hidden">
+                    <div className="h-6 w-6 rounded-full bg-muted flex items-center justify-center border border-border overflow-hidden">
                       {m.avatar_url ? (
                         <img src={m.avatar_url} alt={m.full_name} className="h-full w-full object-cover" />
                       ) : (
-                        <UserCircle className="h-6 w-6 text-muted-foreground" />
+                        <UserCircle className="h-4 w-4 text-muted-foreground" />
                       )}
                     </div>
                     {m.is_online && (
@@ -87,24 +87,24 @@ export function ActiveMerchants() {
                     )}
                   </div>
                   <div className="min-w-0">
-                    <div className="flex items-center gap-1">
-                      <span className="font-heading font-semibold text-sm truncate">{m.full_name}</span>
-                      <ShieldCheck className="h-3.5 w-3.5 text-primary shrink-0" />
+                    <div className="flex items-center gap-0.5">
+                      <span className="font-heading font-semibold text-[10px] truncate">{m.full_name}</span>
+                      <ShieldCheck className="h-2.5 w-2.5 text-primary shrink-0" />
                     </div>
-                    <span className={`text-[10px] font-sans ${m.is_online ? 'text-primary' : 'text-muted-foreground'}`}>
-                      {m.is_online ? 'Online now' : 'Offline'}
+                    <span className={`text-[8px] font-sans ${m.is_online ? 'text-primary' : 'text-muted-foreground'}`}>
+                      {m.is_online ? 'Online' : 'Offline'}
                     </span>
                   </div>
                 </div>
-                <div className="flex items-center justify-between text-xs font-sans text-muted-foreground">
-                  <span className="flex items-center gap-1">
-                    <Star className="h-3 w-3 text-accent fill-accent" />
+                <div className="flex items-center justify-between text-[9px] font-sans text-muted-foreground">
+                  <span className="flex items-center gap-0.5">
+                    <Star className="h-2 w-2 text-accent fill-accent" />
                     {m.average_rating > 0 ? m.average_rating.toFixed(1) : '—'}
                   </span>
-                  <span>{m.completion_rate}% completion</span>
+                  <span>{m.completion_rate}%</span>
                 </div>
-                <div className="text-[10px] text-muted-foreground font-sans bg-muted/50 px-2 py-1 rounded text-center">
-                  {m.completed_trades} trades completed
+                <div className="text-[8px] text-muted-foreground font-sans bg-muted/50 px-1.5 py-0.5 rounded text-center">
+                  {m.completed_trades} trades
                 </div>
               </CardContent>
             </Card>

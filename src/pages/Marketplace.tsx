@@ -20,25 +20,25 @@ const PAYMENT_METHODS = ['CBE Birr', 'Telebirr', 'Amhara Bank', 'Awash Bank'];
 function LiveRatesWidget() {
   const [activeTab, setActiveTab] = useState<'buy' | 'sell'>('buy');
   return (
-    <div className="glass-card rounded-xl p-3 space-y-3 relative overflow-hidden mb-4 lg:mb-0 lg:sticky lg:top-24">
+    <div className="glass-card rounded-xl p-2 space-y-2 relative overflow-hidden mb-4 lg:mb-0 lg:sticky lg:top-24">
       {/* Subtle inner glow */}
-      <div className="absolute top-0 right-0 w-16 h-16 bg-accent/10 rounded-full blur-2xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-8 h-8 bg-accent/10 rounded-full blur-xl pointer-events-none" />
 
-      <div className="flex items-center justify-between border-b border-border/50 pb-2 relative z-10">
-        <span className="text-[9px] uppercase tracking-widest text-muted-foreground font-sans">Live Rates</span>
-        <span className="inline-flex items-center gap-1 text-[9px] font-sans font-medium text-accent">
-          <span className="h-1 w-1 rounded-full bg-accent animate-pulse" />
+      <div className="flex items-center justify-between border-b border-border/50 pb-1 relative z-10">
+        <span className="text-[8px] uppercase tracking-widest text-muted-foreground font-sans">Live Rates</span>
+        <span className="inline-flex items-center gap-1 text-[8px] font-sans font-medium text-accent">
+          <span className="h-0.5 w-0.5 rounded-full bg-accent animate-pulse" />
           Now
         </span>
       </div>
 
       {/* Tab */}
-      <div className="grid grid-cols-2 gap-1 p-1 bg-muted/50 rounded-md relative z-10">
+      <div className="grid grid-cols-2 gap-0.5 p-0.5 bg-muted/50 rounded-md relative z-10">
         {(['buy', 'sell'] as const).map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`py-1 text-[10px] font-sans font-semibold rounded-sm transition-all no-select ${
+            className={`py-0.5 text-[9px] font-sans font-semibold rounded-sm transition-all no-select ${
               activeTab === tab
                 ? 'bg-background text-foreground shadow-sm ring-1 ring-border'
                 : 'text-muted-foreground hover:text-foreground'
@@ -49,38 +49,38 @@ function LiveRatesWidget() {
         ))}
       </div>
 
-      <div className="space-y-2 relative z-10">
+      <div className="space-y-1.5 relative z-10">
         <div>
-          <p className="text-[9px] uppercase tracking-widest text-muted-foreground font-sans mb-0.5">Rate</p>
-          <div className="flex items-baseline gap-1">
-            <span className="text-xl font-heading font-bold bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
+          <p className="text-[8px] uppercase tracking-widest text-muted-foreground font-sans mb-0.5">Rate</p>
+          <div className="flex items-baseline gap-0.5">
+            <span className="text-sm font-heading font-bold bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
               {activeTab === 'buy' ? '180–182' : '183–186'}
             </span>
-            <span className="text-[10px] text-muted-foreground font-sans font-medium">ETB/USDT</span>
+            <span className="text-[9px] text-muted-foreground font-sans font-medium">ETB/USDT</span>
           </div>
         </div>
-        <div className="space-y-1.5 text-[10px] font-sans bg-muted/30 p-2 rounded-lg">
+        <div className="space-y-1 text-[9px] font-sans bg-muted/30 p-1.5 rounded-lg">
           <div className="flex items-center justify-between">
             <span className="text-muted-foreground">Methods</span>
             <div className="flex gap-0.5">
-              <span className="bg-background px-1 py-0.5 rounded text-[8px] border border-border">CBE</span>
-              <span className="bg-background px-1 py-0.5 rounded text-[8px] border border-border">Telebirr</span>
+              <span className="bg-background px-0.5 py-0.5 rounded text-[7px] border border-border">CBE</span>
+              <span className="bg-background px-0.5 py-0.5 rounded text-[7px] border border-border">Telebirr</span>
             </div>
           </div>
           <div className="flex items-center justify-between">
             <span className="text-muted-foreground">Time</span>
             <span className="font-medium flex items-center gap-0.5">
-              <Zap className="h-2.5 w-2.5 text-accent" /> &lt;15m
+              <Zap className="h-2 w-2 text-accent" /> &lt;15m
             </span>
           </div>
           <div className="flex items-center justify-between">
             <span className="text-muted-foreground">Security</span>
             <span className="font-medium flex items-center gap-0.5">
-              <ShieldCheck className="h-2.5 w-2.5 text-accent" /> Escrow
+              <ShieldCheck className="h-2 w-2 text-accent" /> Escrow
             </span>
           </div>
         </div>
-        <Button className="w-full text-xs shadow-sm shadow-accent/10 h-9 bg-accent text-accent-foreground hover:bg-accent/90 border-0" size="sm" asChild>
+        <Button className="w-full text-[9px] shadow-sm shadow-accent/10 h-7 bg-accent text-accent-foreground hover:bg-accent/90 border-0" size="sm" asChild>
           <Link to={`/marketplace/create?type=${activeTab}`}>
             Create {activeTab === 'buy' ? 'Buy' : 'Sell'} Offer
           </Link>

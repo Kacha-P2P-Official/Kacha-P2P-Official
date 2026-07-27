@@ -182,6 +182,43 @@ export default function UserWallets() {
         )}
       </div>
 
+      {/* Deposit Section */}
+      {wallets.length > 0 && (
+        <div className="mt-6 pt-6 border-t border-border">
+          <h3 className="text-base font-heading font-semibold mb-4">Deposit to Your Wallets</h3>
+          <p className="text-sm text-muted-foreground font-sans mb-4">
+            Send USDT to these wallet addresses to fund your account:
+          </p>
+          <div className="space-y-3">
+            {wallets.map((wallet) => (
+              <Card key={wallet.id} className="border border-border bg-muted/20">
+                <CardContent className="p-3">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="min-w-0">
+                      <p className="text-xs font-heading font-medium">{wallet.label || 'Wallet'}</p>
+                      <p className="text-[10px] text-muted-foreground font-sans">{wallet.network}</p>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <code className="text-[10px] bg-background px-2 py-1 rounded font-mono truncate max-w-[120px]">
+                        {wallet.wallet_address}
+                      </code>
+                      <Button
+                        size="icon"
+                        variant="ghost"
+                        className="h-5 w-5"
+                        onClick={() => copyAddress(wallet.wallet_address)}
+                      >
+                        {copied === wallet.wallet_address ? <Check className="h-2.5 w-2.5" /> : <CopyIcon className="h-2.5 w-2.5" />}
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Send Dialog */}
       <Dialog open={sendDialogOpen} onOpenChange={setSendDialogOpen}>
         <DialogContent className="max-w-md">
