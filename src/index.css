@@ -1,0 +1,201 @@
+/* stylelint-disable */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Kacha — trusted P2P exchange: deep charcoal base, emerald trust green, amber verified accent */
+
+@font-face {
+  font-family: 'Inter';
+  src: url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+}
+
+@layer base {
+  :root {
+    --radius: 12px;
+    --background: 222 47% 7%;
+    --foreground: 210 20% 96%;
+    --card: 222 40% 10%;
+    --card-foreground: 210 20% 96%;
+    --popover: 222 40% 10%;
+    --popover-foreground: 210 20% 96%;
+    --primary: 152 62% 42%;           /* Emerald — Buy / trust / verified */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 222 25% 15%;
+    --secondary-foreground: 210 20% 96%;
+    --muted: 222 25% 15%;
+    --muted-foreground: 215 15% 65%;
+    --accent: 38 92% 55%;             /* Amber — premium / official / admin */
+    --accent-foreground: 222 47% 8%;
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 222 20% 20%;
+    --input: 222 20% 20%;
+    --ring: 152 62% 42%;
+    --success: 152 62% 42%;
+    --warning: 38 92% 55%;
+    --info: 210 90% 60%;
+    --chart-1: 152 62% 42%;
+    --chart-2: 38 92% 55%;
+    --chart-3: 0 72% 55%;
+    --chart-4: 210 90% 60%;
+    --chart-5: 275 60% 60%;
+    --sidebar-background: 222 40% 8%;
+    --sidebar-foreground: 210 20% 96%;
+    --sidebar-primary: 152 62% 42%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 222 25% 15%;
+    --sidebar-accent-foreground: 210 20% 96%;
+    --sidebar-border: 222 20% 20%;
+    --sidebar-ring: 152 62% 42%;
+    --shadow-sm: 0 4px 12px rgba(0,0,0,.5);
+    --shadow-md: 0 16px 40px rgba(0,0,0,.7);
+    --shadow-glow: 0 0 30px rgba(16,185,129,.25);
+    --gradient-hero: linear-gradient(135deg, hsl(222 47% 7%) 0%, hsl(222 40% 13%) 100%);
+    --gradient-card: linear-gradient(160deg, hsl(222 40% 10%) 0%, hsl(222 35% 14%) 100%);
+  }
+
+  .dark {
+    --background: 222 47% 7%;
+    --foreground: 210 20% 96%;
+    --card: 222 40% 10%;
+    --card-foreground: 210 20% 96%;
+    --popover: 222 40% 10%;
+    --popover-foreground: 210 20% 96%;
+    --primary: 152 62% 42%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 222 25% 15%;
+    --secondary-foreground: 210 20% 96%;
+    --muted: 222 25% 15%;
+    --muted-foreground: 215 15% 65%;
+    --accent: 38 92% 55%;
+    --accent-foreground: 222 47% 8%;
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 222 20% 20%;
+    --input: 222 20% 20%;
+    --ring: 152 62% 42%;
+    --success: 152 62% 42%;
+    --warning: 38 92% 55%;
+    --info: 210 90% 60%;
+    --chart-1: 152 62% 42%;
+    --chart-2: 38 92% 55%;
+    --chart-3: 0 72% 55%;
+    --chart-4: 210 90% 60%;
+    --chart-5: 275 60% 60%;
+    --sidebar-background: 222 40% 8%;
+    --sidebar-foreground: 210 20% 96%;
+    --sidebar-primary: 152 62% 42%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 222 25% 15%;
+    --sidebar-accent-foreground: 210 20% 96%;
+    --sidebar-border: 222 20% 20%;
+    --sidebar-ring: 152 62% 42%;
+    --shadow-sm: 0 4px 12px rgba(0,0,0,.5);
+    --shadow-md: 0 16px 40px rgba(0,0,0,.7);
+    --shadow-glow: 0 0 30px rgba(16,185,129,.25);
+    --gradient-hero: linear-gradient(135deg, hsl(222 47% 7%) 0%, hsl(222 40% 13%) 100%);
+    --gradient-card: linear-gradient(160deg, hsl(222 40% 10%) 0%, hsl(222 35% 14%) 100%);
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+
+  html { -webkit-tap-highlight-color: transparent; }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: var(--leading-body, 1.6);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+    letter-spacing: var(--tracking-tight, -0.02em);
+    line-height: 1.2;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.25);
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer utilities {
+  /* Kacha signature utilities */
+  .luminate-rule {
+    border-top: 2px solid hsl(var(--primary));
+    @apply mb-4;
+  }
+  .luminate-rule-dark {
+    border-top: 2px solid hsl(var(--primary) / 0.9);
+    @apply mb-4;
+  }
+  .accent-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+  .card-gradient {
+    background: var(--gradient-card);
+  }
+  .no-select {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  .luminate-title {
+    text-shadow: 0 2px 24px hsl(var(--primary) / 0.15);
+  }
+  .dark .luminate-title {
+    text-shadow: 0 0 40px hsl(var(--primary) / 0.35), 0 2px 12px rgba(0,0,0,.8);
+  }
+  .gold-text {
+    color: hsl(var(--accent));
+  }
+  .glass-card {
+    @apply bg-background/60 backdrop-blur-xl border border-primary/20 shadow-lg shadow-black/40;
+  }
+  .glass-chip {
+    @apply bg-primary/10 backdrop-blur-md border border-primary/30 text-primary;
+  }
+  .glass-chip-purple {
+    @apply bg-accent/10 backdrop-blur-md border border-accent/30 text-accent;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .online-dot {
+    @apply relative inline-flex h-2.5 w-2.5 rounded-full bg-primary;
+  }
+  .online-dot::after {
+    content: '';
+    @apply absolute inset-0 rounded-full bg-primary animate-ping;
+  }
+  .vignette::after {
+    content: '';
+    @apply absolute inset-0 pointer-events-none;
+    background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,.35) 100%);
+  }
+  .page-enter {
+    animation: pageEnter 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  @keyframes pageEnter {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@supports (padding: env(safe-area-inset-bottom)) {
+  .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+}
