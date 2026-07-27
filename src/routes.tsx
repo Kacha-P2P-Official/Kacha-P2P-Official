@@ -6,6 +6,7 @@ import Marketplace from '@/pages/Marketplace';
 import CreateOffer from '@/pages/CreateOffer';
 import ActiveTrade from '@/pages/ActiveTrade';
 import KYCVerification from '@/pages/KYCVerification';
+import MerchantApplication from '@/pages/MerchantApplication';
 import Profile from '@/pages/Profile';
 import AdminDashboard from '@/pages/AdminDashboard';
 import Settings from '@/pages/Settings';
@@ -30,6 +31,7 @@ export const routes: RouteConfig[] = [
   { name: 'Create Offer', path: '/marketplace/create', element: <CreateOffer /> },
   { name: 'Active Trade', path: '/marketplace/trade/:id', element: <ActiveTrade /> },
   { name: 'KYC Verification', path: '/kyc', element: <KYCVerification /> },
+  { name: 'Merchant Application', path: '/merchant-application', element: <MerchantApplication /> },
   { name: 'Profile', path: '/profile', element: <Profile /> },
   { name: 'Settings', path: '/settings', element: <Settings /> },
   { name: 'Admin Dashboard', path: '/admin', element: <AdminDashboard /> },
