@@ -11,7 +11,7 @@ import {
   AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent,
   AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
-import { Send, Lock, CheckCircle2, AlertTriangle, Upload, X } from 'lucide-react';
+import { Send, Lock, CheckCircle2, AlertTriangle, Upload, X, Copy as CopyIcon, UserCircle } from 'lucide-react';
 import { toast } from 'sonner';
 import { useSupabaseUpload } from '@/hooks/use-supabase-upload';
 import type { Trade, TradeMessage, Profile } from '@/types/index';
@@ -339,28 +339,63 @@ export default function ActiveTrade() {
                 </p>
                 
                 {/* Seller's Payment Details */}
-                <div className="mt-4 p-3 bg-muted/30 rounded-lg border border-border">
-                  <p className="text-xs font-semibold font-sans mb-2 text-accent">Seller's Payment Details:</p>
+                <div className="mt-4 p-4 bg-gradient-to-br from-muted/40 to-muted/20 rounded-xl border border-border shadow-[var(--shadow-sm)]">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="h-8 w-8 rounded-lg bg-accent/20 flex items-center justify-center border border-accent/30">
+                      <Lock className="h-4 w-4 text-accent" />
+                    </div>
+                    <p className="text-sm font-heading font-bold text-accent">Seller's Payment Details</p>
+                  </div>
                   {offer?.payment_details && Object.keys(offer.payment_details).length > 0 ? (
-                    Object.entries(offer.payment_details).map(([method, details]: [string, any]) => (
-                      <div key={method} className="mb-2 last:mb-0">
-                        <p className="text-xs font-semibold font-sans">{method}</p>
-                        {details?.account_number && (
-                          <p className="text-xs text-muted-foreground font-sans">
-                            Account: <span className="font-mono bg-background px-1.5 py-0.5 rounded">{details.account_number}</span>
-                          </p>
-                        )}
-                        {details?.holder_name && (
-                          <p className="text-xs text-muted-foreground font-sans">
-                            Account Holder: <span className="font-medium">{details.holder_name}</span>
-                          </p>
-                        )}
-                      </div>
-                    ))
+                    <div className="space-y-3">
+                      {Object.entries(offer.payment_details).map(([method, details]: [string, any]) => (
+                        <div key={method} className="p-3 bg-background/50 rounded-lg border border-border hover:border-accent/50 transition-colors">
+                          <div className="flex items-center gap-2 mb-2">
+                            <div className="h-6 w-6 rounded-full bg-primary/20 flex items-center justify-center">
+                              <CheckCircle2 className="h-3 w-3 text-primary" />
+                            </div>
+                            <p className="text-sm font-heading font-semibold">{method}</p>
+                          </div>
+                          {details?.account_number && (
+                            <div className="mb-2">
+                              <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-sans mb-1">Account Number</p>
+                              <div className="flex items-center gap-2">
+                                <code className="text-sm font-mono bg-background px-3 py-1.5 rounded border border-border flex-1 font-semibold text-foreground">
+                                  {details.account_number}
+                                </code>
+                                <Button
+                                  size="icon"
+                                  variant="ghost"
+                                  className="h-7 w-7 shrink-0"
+                                  onClick={() => {
+                                    navigator.clipboard.writeText(details.account_number);
+                                    toast.success('Account number copied to clipboard');
+                                  }}
+                                >
+                                  <Copy className="h-3 w-3" />
+                                </Button>
+                              </div>
+                            </div>
+                          )}
+                          {details?.holder_name && (
+                            <div>
+                              <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-sans mb-1">Account Holder</p>
+                              <p className="text-sm font-medium text-foreground flex items-center gap-2">
+                                <UserCircle className="h-4 w-4 text-accent" />
+                                {details.holder_name}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
                   ) : (
-                    <p className="text-xs text-muted-foreground font-sans">
-                      No payment details available from the seller's offer.
-                    </p>
+                    <div className="text-center py-4">
+                      <AlertTriangle className="h-8 w-8 mx-auto mb-2 text-muted-foreground" />
+                      <p className="text-sm text-muted-foreground font-sans">
+                        No payment details available from the seller's offer.
+                      </p>
+                    </div>
                   )}
                 </div>
                 
