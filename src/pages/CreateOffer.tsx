@@ -67,20 +67,6 @@ const schema = z.object({
     });
   }
 });
-  // Require payment details for selected payment methods
-  if (d.payment_methods && d.payment_methods.length > 0) {
-    d.payment_methods.forEach((method) => {
-      const details = d.payment_details?.[method] || '';
-      if (!details || details.trim() === '') {
-        ctx.addIssue({ 
-          code: 'custom', 
-          path: ['payment_details'], 
-          message: `Please provide account details for ${method}` 
-        });
-      }
-    });
-  }
-});
 
 export default function CreateOffer() {
   const { profile } = useAuth();
