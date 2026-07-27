@@ -128,7 +128,7 @@ export default function Dashboard() {
       {/* Quick actions - Glow buttons */}
       <div>
         <h2 className="text-xl font-heading font-semibold mb-4">Quick Actions</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Button asChild className="h-14 bg-accent text-accent-foreground hover:bg-accent/90 shadow-[0_0_20px_rgba(245,158,11,0.3)] relative overflow-hidden group">
             <Link to="/marketplace?tab=buy">
               <span className="relative z-10 flex items-center font-sans text-base">
@@ -140,13 +140,6 @@ export default function Dashboard() {
             <Link to="/marketplace/create?type=sell">
               <span className="relative z-10 flex items-center font-sans text-base">
                 Sell USDT <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </span>
-            </Link>
-          </Button>
-          <Button variant="outline" asChild className="h-14 border-border bg-card hover:bg-muted/50 group relative overflow-hidden">
-            <Link to="/wallets">
-              <span className="relative z-10 flex items-center font-sans text-base">
-                <Wallet className="mr-2 h-4 w-4" /> Manage Wallets
               </span>
             </Link>
           </Button>
