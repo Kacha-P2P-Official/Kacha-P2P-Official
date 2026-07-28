@@ -58,12 +58,14 @@ export default function Register() {
   const onSubmit = async (values: z.infer<typeof schema>) => {
     setLoading(true);
     setError(null);
-    const { error: err } = await signUpWithEmail(values.email, values.password, values.fullName);
+    const { error: err, needsVerification } = await signUpWithEmail(values.email, values.password, values.fullName);
     if (err) setError(err.message);
-    else {
+    else if (needsVerification) {
       setPendingEmail(values.email);
       setSuccess(true);
     }
+    // else: account is already created and signed in — the `if (user)` redirect
+    // above takes over as soon as the auth state updates, no OTP step needed.
     setLoading(false);
   };
 
