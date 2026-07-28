@@ -372,7 +372,7 @@ export default function ActiveTrade() {
                                     toast.success('Account number copied to clipboard');
                                   }}
                                 >
-                                  <Copy className="h-3 w-3" />
+                                  <CopyIcon className="h-3 w-3" />
                                 </Button>
                               </div>
                             </div>
