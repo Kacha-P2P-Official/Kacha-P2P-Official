@@ -65,10 +65,10 @@ export default function MerchantDeposits() {
       toast.error('Please fill all fields and upload proof');
       return;
     }
+    const fileName = upload.files[0]?.name;
     setSubmitting(true);
-    await upload.onUpload();
-    if (upload.isSuccess && upload.files.length > 0) {
-      const fileName = upload.files[0].name;
+    const result = await upload.onUpload();
+    if (result.success && fileName) {
       const filePath = profile?.id ? `${profile.id}/${fileName}` : fileName;
       const { data: { publicUrl } } = supabase.storage
         .from('merchant-deposits')
@@ -92,8 +92,10 @@ export default function MerchantDeposits() {
         upload.setFiles([]);
         loadData();
       }
-    } else if (upload.errors.length > 0) {
-      toast.error(`Upload failed: ${upload.errors[0].message}`);
+    } else if (result.errors.length > 0) {
+      toast.error(`Upload failed: ${result.errors[0].message}`);
+    } else {
+      toast.error('Upload failed. Please try again.');
     }
     setSubmitting(false);
   };
