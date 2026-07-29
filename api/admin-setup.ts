@@ -59,6 +59,21 @@ export default async function handler(req: any, res: any) {
 
     if (existingUser) {
       userId = existingUser.id;
+
+      // Force the password and confirmation status to match the current env
+      // vars — otherwise a pre-existing account (e.g. from a normal signup
+      // before this endpoint was set up) silently keeps its old password,
+      // and "admin creds" won't actually log in.
+      const { error: updateAuthErr } = await supabase.auth.admin.updateUserById(userId, {
+        password: adminPassword as string,
+        email_confirm: true,
+      });
+      if (updateAuthErr) {
+        res.status(500).json({
+          error: `Found existing user but could not reset password: ${updateAuthErr.message}`,
+        });
+        return;
+      }
     } else {
       const { data: created, error: createErr } = await supabase.auth.admin.createUser({
         email: adminEmail as string,
