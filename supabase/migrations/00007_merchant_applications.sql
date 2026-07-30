@@ -17,30 +17,31 @@ create table if not exists merchant_applications (
 
 alter table merchant_applications enable row level security;
 
+drop policy if exists "merchant_apps: user can view own" on merchant_applications;
 create policy "merchant_apps: user can view own" on merchant_applications for select using (auth.uid() = user_id or is_admin());
+drop policy if exists "merchant_apps: user can insert own" on merchant_applications;
 create policy "merchant_apps: user can insert own" on merchant_applications for insert with check (auth.uid() = user_id);
+drop policy if exists "merchant_apps: admin can update" on merchant_applications;
 create policy "merchant_apps: admin can update" on merchant_applications for update using (is_admin());
 
--- Add is_merchant flag to profiles
-alter table profiles 
-add column is_merchant boolean not null default false;
+-- Add is_merchant flag to profiles (idempotent — skips if it already exists)
+alter table profiles
+add column if not exists is_merchant boolean not null default false;
 
 -- Function to approve merchant application
 create or replace function approve_merchant_application(p_app_id uuid, p_admin_id uuid)
 returns void language plpgsql security definer as $$
 begin
   if not is_admin() then raise exception 'Not authorized'; end if;
-  
-  -- Update application status
-  update merchant_applications 
-  set status = 'approved', 
-      reviewed_by = p_admin_id, 
+
+  update merchant_applications
+  set status = 'approved',
+      reviewed_by = p_admin_id,
       reviewed_at = now()
   where id = p_app_id;
-  
-  -- Set user as merchant
-  update profiles 
-  set is_merchant = true 
+
+  update profiles
+  set is_merchant = true
   where id = (select user_id from merchant_applications where id = p_app_id);
 end;
 $$;
@@ -50,12 +51,14 @@ create or replace function reject_merchant_application(p_app_id uuid, p_admin_id
 returns void language plpgsql security definer as $$
 begin
   if not is_admin() then raise exception 'Not authorized'; end if;
-  
-  update merchant_applications 
-  set status = 'rejected', 
+
+  update merchant_applications
+  set status = 'rejected',
       rejection_reason = p_reason,
-      reviewed_by = p_admin_id, 
+      reviewed_by = p_admin_id,
       reviewed_at = now()
   where id = p_app_id;
 end;
 $$;
+
+NOTIFY pgrst, 'reload schema';
