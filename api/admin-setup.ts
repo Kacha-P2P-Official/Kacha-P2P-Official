@@ -96,6 +96,19 @@ export default async function handler(req: any, res: any) {
         return;
       }
       userId = existing.id;
+
+      // The account already existed from a previous run — force its
+      // password and confirmation status to match the CURRENT env vars,
+      // so this script is truly safe to re-run even if ADMIN_PASSWORD
+      // changed (or was mistyped) since the account was first created.
+      const { error: updateErr } = await supabase.auth.admin.updateUserById(userId, {
+        password: adminPassword,
+        email_confirm: true,
+      });
+      if (updateErr) {
+        res.status(500).json({ error: `Found existing user but failed to sync password: ${updateErr.message}` });
+        return;
+      }
     } else {
       userId = created.user.id;
     }
